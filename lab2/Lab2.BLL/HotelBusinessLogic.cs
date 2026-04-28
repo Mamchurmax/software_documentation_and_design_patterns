@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lab2.Domain.Entities;
 using Lab2.Domain.Interfaces;
 
@@ -83,6 +84,31 @@ namespace Lab2.BLL
             _dataRepository.SaveHotels(hotelsDict.Values);
             
             Console.WriteLine($"Successfully saved {hotelsDict.Count} distinct hotels from {records.Count()} CSV rows to Database!");
+        }
+
+        public IEnumerable<Hotel> GetAllHotels()
+        {
+            return _dataRepository.GetAllHotels();
+        }
+
+        public Hotel? GetHotelById(string id)
+        {
+            return _dataRepository.GetHotelById(id);
+        }
+
+        public void AddHotel(Hotel hotel)
+        {
+            _dataRepository.AddHotel(hotel);
+        }
+
+        public void UpdateHotel(Hotel hotel)
+        {
+            _dataRepository.UpdateHotel(hotel);
+        }
+
+        public void DeleteHotel(string id)
+        {
+            _dataRepository.DeleteHotel(id);
         }
     }
 }

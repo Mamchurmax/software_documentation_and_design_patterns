@@ -10,6 +10,12 @@ namespace Lab2.Domain.Interfaces
         void SaveLocations(IEnumerable<Location> locations);
         void SaveHotelChains(IEnumerable<HotelChain> chains);
         void EnsureDatabaseCreated();
+        
+        IEnumerable<Hotel> GetAllHotels();
+        Hotel? GetHotelById(string id);
+        void AddHotel(Hotel hotel);
+        void UpdateHotel(Hotel hotel);
+        void DeleteHotel(string id);
     }
 
     public interface ICsvReader
@@ -20,6 +26,12 @@ namespace Lab2.Domain.Interfaces
     public interface IHotelBusinessLogic
     {
         void ProcessAndSaveData(string csvFilePath);
+        
+        IEnumerable<Hotel> GetAllHotels();
+        Hotel? GetHotelById(string id);
+        void AddHotel(Hotel hotel);
+        void UpdateHotel(Hotel hotel);
+        void DeleteHotel(string id);
     }
 
     public interface IPresentationLayer

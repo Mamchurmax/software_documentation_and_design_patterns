@@ -1,0 +1,278 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\lpnu\\software_documentation_and_design_patterns\\lab3\\Lab3.Web\\Lab3.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\Lab2.BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\Lab2.BLL.csproj",
+        "projectName": "Lab2.BLL",
+        "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\Lab2.BLL.csproj",
+        "packagesPath": "C:\\Users\\maxma\\.nuget\\packages\\",
+        "outputPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\maxma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj"
+              },
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj",
+        "projectName": "Lab2.DAL",
+        "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj",
+        "packagesPath": "C:\\Users\\maxma\\.nuget\\packages\\",
+        "outputPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\maxma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj",
+        "projectName": "Lab2.Domain",
+        "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj",
+        "packagesPath": "C:\\Users\\maxma\\.nuget\\packages\\",
+        "outputPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\maxma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\lpnu\\software_documentation_and_design_patterns\\lab3\\Lab3.Web\\Lab3.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\lpnu\\software_documentation_and_design_patterns\\lab3\\Lab3.Web\\Lab3.Web.csproj",
+        "projectName": "Lab3.Web",
+        "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab3\\Lab3.Web\\Lab3.Web.csproj",
+        "packagesPath": "C:\\Users\\maxma\\.nuget\\packages\\",
+        "outputPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab3\\Lab3.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\maxma\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\Lab2.BLL.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.BLL\\Lab2.BLL.csproj"
+              },
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.DAL\\Lab2.DAL.csproj"
+              },
+              "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj": {
+                "projectPath": "C:\\lpnu\\software_documentation_and_design_patterns\\lab2\\Lab2.Domain\\Lab2.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

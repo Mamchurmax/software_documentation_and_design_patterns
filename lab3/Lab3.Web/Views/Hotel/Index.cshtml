@@ -1,0 +1,47 @@
+@model IEnumerable<Lab2.Domain.Entities.Hotel>
+
+@{
+    ViewData["Title"] = "Hotels";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Hotels Inventory</h2>
+    <a asp-action="Create" class="btn btn-primary-glass">➕ Create New Hotel</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-glass align-middle">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Chain</th>
+                <th>Star Rating</th>
+                <th>Location</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@item.Name</td>
+                        <td>@(item.HotelChain?.ChainName ?? "Independent")</td>
+                        <td>
+                            <span class="text-warning">
+                                @for(int i=0; i<item.StarRating; i++){ <text>★</text> }
+                            </span>
+                        </td>
+                        <td>@(item.Location?.City), @(item.Location?.Country)</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.PropertyId" class="btn btn-sm btn-glass me-1">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.PropertyId" class="btn btn-sm btn-glass me-1">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.PropertyId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
