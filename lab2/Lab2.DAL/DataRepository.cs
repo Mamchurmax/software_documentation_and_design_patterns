@@ -17,7 +17,6 @@ namespace Lab2.DAL
 
         public void EnsureDatabaseCreated()
         {
-            _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
         }
 

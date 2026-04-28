@@ -1,7 +1,8 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Lab2.Domain.Entities;
 using Lab2.Domain.Interfaces;
-using System.Linq;
 
 namespace Lab3.Web.Controllers
 {
@@ -43,9 +44,25 @@ namespace Lab3.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Hotel hotel)
         {
+            // Remove validation for navigation/auto-generated properties
+            ModelState.Remove("PropertyId");
+            ModelState.Remove("LocationId");
+            ModelState.Remove("Location");
+            ModelState.Remove("Location.Country");
+            ModelState.Remove("Location.City");
+            ModelState.Remove("Location.Address");
+            ModelState.Remove("HotelChain");
+
             if (ModelState.IsValid)
             {
-                hotel.Location = new Location { Country = "Unknown", City = "Unknown", Address = "Unknown" };
+                hotel.PropertyId = Guid.NewGuid().ToString();
+                hotel.Location = new Location
+                {
+                    LocationId = Guid.NewGuid().ToString(),
+                    Country = "Unknown",
+                    City = "Unknown",
+                    Address = "Unknown"
+                };
                 _bll.AddHotel(hotel);
                 return RedirectToAction(nameof(Index));
             }
@@ -69,6 +86,13 @@ namespace Lab3.Web.Controllers
         public IActionResult Edit(string id, Hotel hotel)
         {
             if (id != hotel.PropertyId) return NotFound();
+
+            ModelState.Remove("LocationId");
+            ModelState.Remove("Location");
+            ModelState.Remove("Location.Country");
+            ModelState.Remove("Location.City");
+            ModelState.Remove("Location.Address");
+            ModelState.Remove("HotelChain");
 
             if (ModelState.IsValid)
             {

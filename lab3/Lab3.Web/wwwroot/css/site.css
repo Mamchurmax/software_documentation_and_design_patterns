@@ -117,3 +117,44 @@ body {
 .table-glass tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
+
+/* Force light text everywhere (override Bootstrap defaults) */
+h1, h2, h3, h4, h5, h6,
+p, span, label, li, dt, dd, td, th,
+.form-check-label,
+.nav-link,
+a {
+  color: #f0f0f0 !important;
+}
+
+a:hover {
+  color: #ffffff !important;
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #ff6b6b !important;
+}
+
+.badge.bg-success {
+  color: #fff !important;
+}
+
+.badge.bg-secondary {
+  color: #fff !important;
+}
+
+select, input, textarea {
+  color: #f0f0f0 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.4) !important;
+}
