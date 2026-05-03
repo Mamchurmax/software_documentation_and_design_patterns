@@ -28,15 +28,15 @@ namespace Lab4.Strategy
             services.AddTransient<IDataReader, CsvDataReader>();
 
             // Register the output strategy based on configuration — no code changes needed!
-            switch (strategyName)
+            switch (strategyName.ToLowerInvariant())
             {
-                case "Kafka":
+                case "kafka":
                     services.AddTransient<IOutputStrategy, KafkaOutputStrategy>();
                     break;
-                case "Redis":
+                case "redis":
                     services.AddTransient<IOutputStrategy, RedisOutputStrategy>();
                     break;
-                case "Console":
+                case "console":
                 default:
                     services.AddTransient<IOutputStrategy, ConsoleOutputStrategy>();
                     break;
