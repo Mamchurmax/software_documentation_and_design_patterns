@@ -31,3 +31,20 @@
         <a asp-action="Index" class="btn btn-glass ms-2">Cancel</a>
     </form>
 </div>
+
+@section Scripts {
+    <script>
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('hotel_delete_view', {
+                hotel_name: '@Model?.Name',
+                hotel_id: '@Model?.PropertyId'
+            });
+            document.querySelector('form')?.addEventListener('submit', function() {
+                firebase.analytics().logEvent('hotel_delete_confirm', {
+                    hotel_name: '@Model?.Name',
+                    hotel_id: '@Model?.PropertyId'
+                });
+            });
+        }
+    </script>
+}

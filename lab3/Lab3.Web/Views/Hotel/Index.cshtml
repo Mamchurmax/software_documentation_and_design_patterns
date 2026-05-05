@@ -45,3 +45,13 @@
         </tbody>
     </table>
 </div>
+
+@section Scripts {
+    <script>
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('hotel_list_view', {
+                hotel_count: @(Model?.Count() ?? 0)
+            });
+        }
+    </script>
+}

@@ -47,4 +47,17 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('hotel_edit_view', {
+                hotel_id: '@Model?.PropertyId'
+            });
+            document.querySelector('form')?.addEventListener('submit', function() {
+                firebase.analytics().logEvent('hotel_edit_submit', {
+                    hotel_id: '@Model?.PropertyId',
+                    hotel_name: document.getElementById('Name')?.value
+                });
+            });
+        }
+    </script>
 }

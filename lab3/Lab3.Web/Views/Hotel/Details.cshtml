@@ -58,3 +58,15 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('hotel_details_view', {
+                hotel_name: '@Model?.Name',
+                hotel_id: '@Model?.PropertyId',
+                star_rating: @(Model?.StarRating ?? 0)
+            });
+        }
+    </script>
+}

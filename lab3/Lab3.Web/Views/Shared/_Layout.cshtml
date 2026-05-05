@@ -107,6 +107,10 @@
             auth.signOut().then(() => {
                 analytics.logEvent('logout');
                 console.log('Signed out');
+                window.location.reload();
+            }).catch((error) => {
+                console.error('Sign-out error:', error);
+                alert('Sign out failed: ' + error.message);
             });
         }
 
@@ -118,13 +122,13 @@
             const userPhoto = document.getElementById('user-photo');
 
             if (user) {
-                loginBtn.style.display = 'none';
-                userInfo.style.display = 'flex';
+                loginBtn.style.cssText = 'display: none !important;';
+                userInfo.style.cssText = 'display: flex !important; align-items: center; gap: 8px;';
                 userName.textContent = user.displayName;
                 userPhoto.src = user.photoURL || '';
             } else {
-                loginBtn.style.display = 'inline-block';
-                userInfo.style.display = 'none';
+                loginBtn.style.cssText = 'display: inline-block !important;';
+                userInfo.style.cssText = 'display: none !important;';
             }
         });
     </script>
