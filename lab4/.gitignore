@@ -484,3 +484,5 @@ $RECYCLE.BIN/
 *.swp
 
 crimes_data.csv
+
+serviceAccountKey.json

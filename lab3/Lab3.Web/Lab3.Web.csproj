@@ -4,6 +4,7 @@
     <ProjectReference Include="..\..\lab2\Lab2.Domain\Lab2.Domain.csproj" />
     <ProjectReference Include="..\..\lab2\Lab2.DAL\Lab2.DAL.csproj" />
     <ProjectReference Include="..\..\lab2\Lab2.BLL\Lab2.BLL.csproj" />
+    <ProjectReference Include="..\..\lab4\Lab4.Strategy\Lab4.Strategy.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

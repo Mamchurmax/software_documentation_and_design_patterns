@@ -484,3 +484,5 @@ $RECYCLE.BIN/
 *.swp
 
 hotels.db
+
+serviceAccountKey.json

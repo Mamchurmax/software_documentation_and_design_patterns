@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Crime Data Processor (Lab 4)";
+}
+
+<h2 style="background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🔍 Crime Data Processor</h2>
+<p class="text-white-50 mb-4">Запустіть обробку даних з датасету Chicago Crimes, використовуючи різні стратегії виводу (Lab 4 — Strategy Pattern).</p>
+<hr style="border-color: rgba(255,255,255,0.2);" />
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <form asp-action="Run" method="post">
+            <div class="form-group mb-4">
+                <label class="form-label fw-bold">Оберіть стратегію виводу:</label>
+                <select name="strategy" class="form-control form-control-glass" id="strategy-select">
+                    <option value="Console">📺 Console — Вивід у консоль</option>
+                    <option value="Kafka">📨 Kafka — Відправка в Apache Kafka</option>
+                    <option value="Redis">🗄️ Redis — Запис у Redis</option>
+                    <option value="Firestore">🔥 Firestore — Запис у Google Firestore</option>
+                </select>
+            </div>
+
+            <div class="glass-card p-3 mb-4">
+                <h6 class="mb-2">ℹ️ Про стратегії:</h6>
+                <ul class="mb-0 small text-white-50">
+                    <li><strong>Console</strong> — Виводить 1000 записів злочинів у серверну консоль.</li>
+                    <li><strong>Kafka</strong> — Публікує JSON-повідомлення в топік <code>chicago-crimes</code> (потребує Docker).</li>
+                    <li><strong>Redis</strong> — Зберігає кожен запис як Redis Hash (потребує Docker).</li>
+                    <li><strong>Firestore</strong> — Зберігає записи у Google Cloud Firestore (потребує Service Account Key).</li>
+                </ul>
+            </div>
+
+            <button type="submit" class="btn btn-primary-glass btn-lg w-100 fw-bold" id="run-btn"
+                    onclick="this.disabled=true; this.innerHTML='⏳ Processing...'; this.form.submit();">
+                🚀 Run Strategy
+            </button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="glass-card p-4 h-100">
+            <h5 class="mb-3">📊 Архітектура Strategy Pattern</h5>
+            <pre class="small mb-0" style="color: #ff8e53;">
+┌──────────────────────┐
+│   IOutputStrategy    │  ← Інтерфейс
+│   + WriteAll()       │
+└──────────┬───────────┘
+           │
+   ┌───────┼───────┬──────────┐
+   │       │       │          │
+Console  Kafka   Redis   Firestore
+   │       │       │          │
+   ▼       ▼       ▼          ▼
+ stdout  docker  docker   cloud
+            </pre>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Log analytics event when strategy is selected
+        document.getElementById('strategy-select')?.addEventListener('change', function() {
+            if (typeof firebase !== 'undefined') {
+                firebase.analytics().logEvent('strategy_selected', {
+                    strategy: this.value
+                });
+            }
+        });
+    </script>
+}

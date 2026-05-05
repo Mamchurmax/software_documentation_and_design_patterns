@@ -20,7 +20,7 @@ namespace Lab4.Strategy
                 .AddJsonFile("appsettings.json", optional: false)
                 .Build();
 
-            var strategyName = configuration["OutputStrategy"] ?? "Console";
+            var strategyName = args.Length > 0 ? args[0] : (configuration["OutputStrategy"] ?? "Console");
 
             // 2. Setup Dependency Injection with strategy from config
             var services = new ServiceCollection();
@@ -36,6 +36,17 @@ namespace Lab4.Strategy
                 case "redis":
                     services.AddTransient<IOutputStrategy, RedisOutputStrategy>();
                     break;
+                case "firestore":
+                    var projectId = configuration["Firebase:ProjectId"] ?? "documentation-f0d9d";
+                    var keyPath = configuration["Firebase:ServiceAccountKeyPath"] ?? "serviceAccountKey.json";
+                    // Set the environment variable for Google Cloud authentication
+                    var fullKeyPath = Path.Combine(AppContext.BaseDirectory, keyPath);
+                    if (File.Exists(fullKeyPath))
+                    {
+                        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", fullKeyPath);
+                    }
+                    services.AddTransient<IOutputStrategy>(_ => new FirestoreOutputStrategy(projectId));
+                    break;
                 case "console":
                 default:
                     services.AddTransient<IOutputStrategy, ConsoleOutputStrategy>();
@@ -47,7 +58,7 @@ namespace Lab4.Strategy
             var serviceProvider = services.BuildServiceProvider();
 
             // 3. Download dataset if not present
-            var csvPath = "crimes_data.csv";
+            var csvPath = Path.Combine(AppContext.BaseDirectory, "crimes_data.csv");
             if (!File.Exists(csvPath))
             {
                 Console.WriteLine("Downloading Chicago Crimes dataset (1000 rows)...");
@@ -70,8 +81,6 @@ namespace Lab4.Strategy
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromMinutes(5);
 
-            // Use streaming to get a limited amount of data
-            // The full dataset is huge (8M+ rows), so we'll read just 1001 lines (header + 1000 rows)
             using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
 
