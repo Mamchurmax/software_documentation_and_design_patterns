@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 fw-bold mb-4" style="background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Welcome to HotelBooking</h1>
+    <p class="lead mb-5">Лабораторна робота 3: MVC додаток для управління готелями.</p>
+    
+    <div class="row justify-content-center mt-5 g-4">
+        <div class="col-md-5">
+            <div class="glass-card p-5 h-100">
+                <h3 class="mb-3">🏨 Hotels</h3>
+                <p class="text-white-50 mb-4">Перегляньте, додайте, відредагуйте або видаліть готелі з нашої бази даних.</p>
+                <a asp-controller="Hotel" asp-action="Index" class="btn btn-primary-glass btn-lg w-100 fw-bold">Manage Hotels</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="glass-card p-5 h-100">
+                <h3 class="mb-3">🔍 Crime Processor</h3>
+                <p class="text-white-50 mb-4">Запустіть Lab 4 (Strategy Pattern): обробка даних Chicago Crimes через Console, Kafka, Redis або Firestore.</p>
+                <a asp-controller="CrimeProcessor" asp-action="Index" class="btn btn-primary-glass btn-lg w-100 fw-bold">Run Strategy</a>
+            </div>
+        </div>
+    </div>
+</div>

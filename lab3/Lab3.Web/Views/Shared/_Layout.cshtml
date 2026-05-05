@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hotel Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark glass-nav mb-4">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">🏨 HotelBooking</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Hotel" asp-action="Index">Hotels</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="CrimeProcessor" asp-action="Index">🔍 Crime Processor</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item" id="auth-container">
+                            <button id="btn-google-login" class="btn btn-glass btn-sm" onclick="googleSignIn()">
+                                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width:18px; margin-right:6px;">
+                                Sign in with Google
+                            </button>
+                            <div id="user-info" style="display:none;" class="d-flex align-items-center gap-2">
+                                <img id="user-photo" src="" alt="" style="width:28px; height:28px; border-radius:50%;">
+                                <span id="user-name" class="text-white"></span>
+                                <button class="btn btn-glass btn-sm" onclick="googleSignOut()">Sign out</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3 glass-container">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-5 py-3" style="border-color: rgba(255,255,255,0.1) !important;">
+        <div class="container text-center text-white-50">
+            &copy; 2026 - HotelBooking Lab 3 - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-white-50">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Firebase SDK (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAVs_AMyMk83rnXWpooHK-TT4bmXJoLzPA",
+            authDomain: "documentation-f0d9d.firebaseapp.com",
+            projectId: "documentation-f0d9d",
+            storageBucket: "documentation-f0d9d.firebasestorage.app",
+            messagingSenderId: "451764554107",
+            appId: "1:451764554107:web:6dec0ff404aa61a83395de",
+            measurementId: "G-X7CVG2SM93"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const analytics = firebase.analytics();
+        const auth = firebase.auth();
+
+        // Log page view event
+        analytics.logEvent('page_view', {
+            page_title: document.title,
+            page_location: window.location.href
+        });
+
+        // Google Sign In
+        function googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    analytics.logEvent('login', { method: 'Google' });
+                    console.log('Signed in:', result.user.displayName);
+                })
+                .catch((error) => {
+                    console.error('Sign-in error:', error);
+                });
+        }
+
+        // Google Sign Out
+        function googleSignOut() {
+            auth.signOut().then(() => {
+                analytics.logEvent('logout');
+                console.log('Signed out');
+                window.location.reload();
+            }).catch((error) => {
+                console.error('Sign-out error:', error);
+                alert('Sign out failed: ' + error.message);
+            });
+        }
+
+        // Listen for auth state changes
+        auth.onAuthStateChanged((user) => {
+            const loginBtn = document.getElementById('btn-google-login');
+            const userInfo = document.getElementById('user-info');
+            const userName = document.getElementById('user-name');
+            const userPhoto = document.getElementById('user-photo');
+
+            if (user) {
+                loginBtn.style.cssText = 'display: none !important;';
+                userInfo.style.cssText = 'display: flex !important; align-items: center; gap: 8px;';
+                userName.textContent = user.displayName;
+                userPhoto.src = user.photoURL || '';
+            } else {
+                loginBtn.style.cssText = 'display: inline-block !important;';
+                userInfo.style.cssText = 'display: none !important;';
+            }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

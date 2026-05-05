@@ -1,0 +1,72 @@
+@model Lab2.Domain.Entities.Hotel
+
+@{
+    ViewData["Title"] = "Hotel Details";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Hotel Details</h2>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.PropertyId" class="btn btn-primary-glass">Edit</a>
+        <a asp-action="Index" class="btn btn-glass">Back to List</a>
+    </div>
+</div>
+<hr style="border-color: rgba(255,255,255,0.2);" />
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="glass-card p-4">
+            <h3 class="mb-4">@Html.DisplayFor(model => model.Name)</h3>
+            
+            <dl class="row">
+                <dt class="col-sm-3 text-white-50">Star Rating</dt>
+                <dd class="col-sm-9">
+                    <span class="text-warning">
+                        @for(int i=0; i<Model.StarRating; i++){ <text>★</text> }
+                    </span>
+                </dd>
+                
+                <dt class="col-sm-3 text-white-50">Description</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+                
+                <dt class="col-sm-3 text-white-50">Active Status</dt>
+                <dd class="col-sm-9">
+                    @if(Model.IsActive) {
+                        <span class="badge bg-success">Active</span>
+                    } else {
+                        <span class="badge bg-secondary">Inactive</span>
+                    }
+                </dd>
+                
+                <dt class="col-sm-3 text-white-50 mt-4">Location</dt>
+                <dd class="col-sm-9 mt-4">
+                    @(Model.Location?.City), @(Model.Location?.Country)<br />
+                    <small class="text-white-50">@Model.Location?.Address</small>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mt-4 mt-md-0">
+        <div class="glass-card p-4 h-100">
+            <h4 class="mb-3">Statistics</h4>
+            <ul class="list-unstyled">
+                <li class="mb-2"><strong>Rooms Available:</strong> @(Model.Rooms?.Count ?? 0)</li>
+                <li class="mb-2"><strong>Total Reviews:</strong> @(Model.Reviews?.Count ?? 0)</li>
+                <li><strong>Average Rating:</strong> @Model.GetAverageRating().ToString("0.0") / 5.0</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('hotel_details_view', {
+                hotel_name: '@Model?.Name',
+                hotel_id: '@Model?.PropertyId',
+                star_rating: @(Model?.StarRating ?? 0)
+            });
+        }
+    </script>
+}

@@ -1,0 +1,84 @@
+@model Lab3.Web.Controllers.CrimeProcessorResult
+
+@{
+    ViewData["Title"] = "Processing Result";
+}
+
+<h2 style="background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📋 Processing Result</h2>
+<hr style="border-color: rgba(255,255,255,0.2);" />
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="glass-card p-4">
+            @if (Model.Success)
+            {
+                <div class="d-flex align-items-center mb-3">
+                    <span style="font-size: 2rem; margin-right: 12px;">✅</span>
+                    <div>
+                        <h4 class="mb-0">Success!</h4>
+                        <small class="text-white-50">Дані оброблено без помилок</small>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex align-items-center mb-3">
+                    <span style="font-size: 2rem; margin-right: 12px;">❌</span>
+                    <div>
+                        <h4 class="mb-0">Error</h4>
+                        <small class="text-white-50">Виникла помилка при обробці</small>
+                    </div>
+                </div>
+            }
+
+            <table class="table table-glass">
+                <tbody>
+                    <tr>
+                        <td class="fw-bold">Стратегія</td>
+                        <td>
+                            @switch (Model.Strategy?.ToLower())
+                            {
+                                case "kafka": <text>📨 Kafka</text> break;
+                                case "redis": <text>🗄️ Redis</text> break;
+                                case "firestore": <text>🔥 Firestore</text> break;
+                                default: <text>📺 Console</text> break;
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Кількість записів</td>
+                        <td>@Model.RecordCount</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Час виконання</td>
+                        <td>@Model.ElapsedMs ms</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="glass-card p-3 mt-3" style="background: rgba(0,0,0,0.2);">
+                <h6>📝 Log:</h6>
+                <pre class="mb-0 small" style="color: #aaa; white-space: pre-wrap;">@Model.Log</pre>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <a asp-action="Index" class="btn btn-glass">← Запустити знову</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-glass">🏠 На головну</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Log analytics event with result
+        if (typeof firebase !== 'undefined') {
+            firebase.analytics().logEvent('strategy_run', {
+                strategy: '@Model.Strategy',
+                success: @Model.Success.ToString().ToLower(),
+                record_count: @Model.RecordCount,
+                elapsed_ms: @Model.ElapsedMs
+            });
+        }
+    </script>
+}
